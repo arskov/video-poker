@@ -19,8 +19,8 @@ How to use
 2. Create client credentials as described in [docs] (https://cloud.google.com/appengine/docs/java/endpoints/consume_js#adding_authentication_support_with_oauth_20) and put them into the sources respectively.
 The hint for seeking required section in the Developers Console 
 ![Alt text](/screen3.png?raw=true "Video Poker implementation in Java").
-3. Update com.arsenyko.endpoint.Constants.WEB_CLIENT_ID and 'var TG_CLIENT_ID' in main\webapp\app\app.js to your CLIENT ID respectively
-4. Deploy using 'mvn appengine:update'. Make sure if you've updated the 'application' element in the 'src/main/webapp/WEB-INF/appengine-web.xml' respectively.
+3. Update `com.arsenyko.endpoint.Constants.WEB_CLIENT_ID` and `var TG_CLIENT_ID` in `main\webapp\app\app.js` to your `CLIENT ID` respectively
+4. Deploy using `mvn appengine:update`. Make sure if you've updated the `application` element in the `src/main/webapp/WEB-INF/appengine-web.xml` respectively.
 
 Troubleshooting
 ---------------
