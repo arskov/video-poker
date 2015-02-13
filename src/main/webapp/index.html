@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="poker-app">
+    <head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="/foundation/css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/foundation/css/foundation.min.css" />
+    <script src="/foundation/js/vendor/modernizr.js"></script>
+    <link rel="stylesheet" type="text/css" href="/cards/cards.css" media="screen" />
+    <!--[if lt IE 9]>
+        <link rel="stylesheet" type="text/css" href="cards-ie.css" media="screen" />
+    <![endif]-->
+    <!--[if IE 9]>
+        <link rel="stylesheet" type="text/css" href="cards-ie9.css" media="screen" />
+    <![endif]-->
+    
+    <style>
+        body {
+            background: url(/img/bg3.jpg);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/app/app.css" media="screen" />
+    <title>Jacks or Better</title>
+</head>
+<body ng-controller="PokerController">
+<nav class="top-bar" data-topbar role="navigation">
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href="#">Jacks or Better</a></h1>
+    </li>
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+      <li><a href="#">{{ currentUser || "" }}</a></li>
+      <li class="has-dropdown">
+        <a href="#">Help</a>
+        <ul class="dropdown">
+          <li><a target="_blank" href="http://en.wikipedia.org/wiki/Video_poker">About</a></li>
+          <li class="active"><a target="_blank" href="http://en.wikipedia.org/wiki/List_of_poker_hands">Poker hands</a></li>
+          <li><a href="#" ng-click="resetCredit()">Reset Credit</a></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</nav>
+<br/>
+<div class="row">
+    <div class="small-12 small-centered medium-8 medium-centered large-6 large-cenetered columns">
+        <form data-abide>
+          <a href="#" class="button large expand radius" ng-click="auth()" ng-show="! isLoggedIn">Sign In</a>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="small-12 small-centered medium-8 medium-centered large-6 large-cenetered columns" ng-show="isLoggedIn">
+        <div class="row">
+            <div class="small-3 columns"><span class="regular radius label left" style="font-size: 1.3em">Bet: {{ model.bet }}</span></div>
+            <div class="small-6 columns">
+                <span 
+                    class="regular radius label"
+                    style="width:100%; font-size: 1.1rem;"
+                    ng-class="resultClass"
+                    ng-bind-html="model.resultText | toTrustedHtml"
+                    ng-show="model.step == 3">
+                </span>
+            </div>
+            <div class="small-3 columns"><span class="regular radius label right" style="font-size: 1.3em">Credit: {{ model.credit - model.bet }}</span></div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 small-centered medium-8 medium-centered large-6 large-cenetered columns">
+        
+        <div id="cards-hand" class="playingCards faceImages">
+           <ul class="table">
+                <li>
+                    <div id="card-1" ng-class="model.hand[0].clazz" ng-click="toggleHold(0)">
+                        <span class="rank" ng-bind-html="model.hand[0].rank | toTrustedHtml"></span>
+                        <span class="suit" ng-bind-html="model.hand[0].suit | toTrustedHtml"></span>
+                        <span class="hold" ng-show="model.hand[0].held"></span>
+                    </div>
+                </li>
+                <li>
+                    <div id="card-2" ng-class="model.hand[1].clazz" ng-click="toggleHold(1)">
+                        <span class="rank" ng-bind-html="model.hand[1].rank | toTrustedHtml"></span>
+                        <span class="suit" ng-bind-html="model.hand[1].suit | toTrustedHtml"></span>
+                        <span class="hold" ng-show="model.hand[1].held"></span>
+                    </div>
+                </li>
+                <li>
+                    <div id="card-3" ng-class="model.hand[2].clazz" ng-click="toggleHold(2)">
+                        <span class="rank" ng-bind-html="model.hand[2].rank | toTrustedHtml"></span>
+                        <span class="suit" ng-bind-html="model.hand[2].suit | toTrustedHtml"></span>
+                        <span class="hold" ng-show="model.hand[2].held"></span>
+                    </div>
+                </li>
+                <li>
+                    <div id="card-4" ng-class="model.hand[3].clazz" ng-click="toggleHold(3)">
+                        <span class="rank" ng-bind-html="model.hand[3].rank | toTrustedHtml"></span>
+                        <span class="suit" ng-bind-html="model.hand[3].suit | toTrustedHtml"></span>
+                        <span class="hold" ng-show="model.hand[3].held"></span>
+                    </div>
+                </li>
+                <li>
+                    <div id="card-5" ng-class="model.hand[4].clazz" ng-click="toggleHold(4)">
+                        <span class="rank" ng-bind-html="model.hand[4].rank | toTrustedHtml"></span>
+                        <span class="suit" ng-bind-html="model.hand[4].suit | toTrustedHtml"></span>
+                        <span class="hold" ng-show="model.hand[4].held"></span>
+                    </div>
+                </li>
+           </ul>
+        </div>
+    </div>
+</div>
+<br/>
+
+<div class="row" ng-show="uiReady">
+    <div class="small-12 small-centered medium-8 medium-centered large-6 large-cenetered columns">
+        <div class="row">
+            <div class="small-3 columns">
+                <a href="#" class="button large expand radius" ng-click="betOne()" ng-show="isLoggedIn" ng-disabled="model.canBet == false">Bet One</a>
+            </div>
+            <div class="small-6 columns">
+                <a href="#" class="button large expand radius success" ng-click="getHand()" ng-show="isLoggedIn" ng-disabled="model.dealButtonDisabled">{{ model.stepText }}</a>
+            </div>
+            <div class="small-3 columns">
+                <a href="#" class="button large expand radius" ng-click="betMax()" ng-show="isLoggedIn" ng-disabled="model.canBet == false">Bet Max</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="small-6 small-centered columns">
+        <a href="#" class="button small expand radius success" ng-click="resetCredit()" ng-show="model.credit <= 0 && isLoggedIn">Reset My Credit</a>
+        <div class="switch">
+          <input id="exampleCheckboxSwitch" type="checkbox" ng-value="showTable">
+          <label for="exampleCheckboxSwitch" ng-click="toggleShowTable()"></label>
+          <h4 class="special">Show Table</h4>
+        </div>
+    </div>
+</div>
+<div class="row" ng-show="showTable">
+    <div class="small-6 small-centered columns">
+        <table id="scores">
+         <thead><tr><th>Hand</th><th>1 credit</th><th>2 credits</th><th>3 credits</th><th>4 credits</th><th>5 credits</th></tr></thead>
+         <tbody> 
+             <tr><td>Royal Flush</td><td>250</td><td>500</td><td>750</td><td>1000</td><td>4000</td></tr>
+             <tr><td>Straight Flush</td><td>50</td><td>100</td><td>150</td><td>200</td><td>250</td></tr>
+             <tr><td>Four of a kind</td><td>25</td><td>50</td><td>75</td><td>100</td><td>125</td></tr>
+             <tr><td>Full House</td><td>9</td><td>18</td><td>27</td><td>36</td><td>45</td></tr>
+             <tr><td>Flush</td><td>6</td><td>12</td><td>18</td><td>24</td><td>30</td></tr>
+             <tr><td>Straight</td><td>4</td><td>8</td><td>12</td><td>16</td><td>20</td></tr>
+             <tr><td>Three of a kind</td><td>3</td><td>6</td><td>9</td><td>12</td><td>15</td></tr>
+             <tr><td>Two Pair</td><td>2</td><td>4</td><td>6</td><td>8</td><td>10</td></tr>
+             <tr><td>Jacks or Better</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+             <tr><td>Theoretical Return</td><td>98.4%</td><td>98.4%</td><td>98.4%</td><td>98.4%</td><td>99.5%</td></tr>
+         </tbody>
+        </table>
+    </div>
+</div>
+<script src="/angular/angular.min.js"></script>
+<script src="/foundation/js/vendor/jquery.js"></script>
+<script src="/foundation/js/foundation.min.js"></script>
+<script src="/app/app.js"></script>
+<script src="https://apis.google.com/js/client.js?onload=initApi"></script>
+</body>
+</html>

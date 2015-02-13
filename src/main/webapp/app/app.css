@@ -1,0 +1,37 @@
+.playingCards .card {
+    cursor: pointer;
+}
+.playingCards .card .hold {
+    display: block;
+    background-color: #008cba;
+    color: white;
+    position: absolute;
+    top: 76px;
+    left: 6px;
+    padding: 0px 10px;
+    border-radius: 3px;
+}
+.playingCards .card .hold:after {
+    content: "HELD";
+}
+#scores {
+    width: 100%;
+}
+#scores * {
+    font-size: 0.82em;
+}
+h4.special {
+    font-weight: 900;
+    font-size: 0.75rem;
+    font-style: normal;
+    text-transform: uppercase;
+    color: #222222;
+    text-rendering: optimizeLegibility;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    display: inline-block;
+    vertical-align: text-bottom;
+    padding-left: 1em;
+    color: white;
+}
