@@ -2,7 +2,7 @@ Video Poker Game
 =============================
 
 Simple implementation of the Video Poker using JavaScript as a frontend and Google App Engine as a backend.
-This sample describes how to implement server-side backend in Java using Google Cloud Endpoints and Javascript client library as a client of the oogle App Engine Endpoints
+This sample describes how to implement server-side backend in Java using Google Cloud Endpoints and JavaScript client library as a client of the Google App Engine Endpoints
 
 [Video Poker Game](https://planar-night-735.appspot.com/)
 
