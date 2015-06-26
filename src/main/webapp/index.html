@@ -23,7 +23,7 @@
     <link rel="stylesheet" type="text/css" href="/app/app.css" media="screen" />
     <title>Jacks or Better</title>
 </head>
-<body ng-controller="PokerController">
+<body ng-controller="PokerController" ng-cloak>
 <nav class="top-bar" data-topbar role="navigation">
   <ul class="title-area">
     <li class="name">
@@ -52,7 +52,7 @@
 <div class="row">
     <div class="small-12 small-centered medium-8 medium-centered large-6 large-cenetered columns">
         <form data-abide>
-          <a href="#" class="button large expand radius" ng-click="auth()" ng-show="! isLoggedIn">Sign In</a>
+          <a href="#" class="button large expand radius" ng-click="auth()" ng-show="!isLoggedIn">Sign In</a>
         </form>
     </div>
 </div>

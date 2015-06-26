@@ -13,7 +13,7 @@
         <appengine.app.version>1</appengine.app.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
-        <app.engine.sdk.version>1.9.15</app.engine.sdk.version>
+        <app.engine.sdk.version>1.9.22</app.engine.sdk.version>
         <servlet.api.version>2.5</servlet.api.version>
         <jstl.version>1.2</jstl.version>
         <logback.version>1.0.13</logback.version>
@@ -117,7 +117,7 @@
             <plugin>
                 <groupId>com.google.appengine</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
-                <version>1.9.13</version>
+                <version>1.9.22</version>
                 <configuration>
                     <enableJarClasses>false</enableJarClasses>
                     <address>0.0.0.0</address>
