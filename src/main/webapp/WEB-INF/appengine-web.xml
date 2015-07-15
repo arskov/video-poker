@@ -5,11 +5,8 @@
     <threadsafe>true</threadsafe>
     <module>default</module>
     
-    <instance-class>B1</instance-class>
-    <basic-scaling>
-        <max-instances>1</max-instances>
-        <idle-timeout>10m</idle-timeout>
-    </basic-scaling>
+    <instance-class>F1</instance-class>
+    <automatic-scaling />
     
     <system-properties>
         <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>

@@ -1,19 +1,16 @@
-Video Poker Game 
-=============================
+# Video Poker Game #
 
 Simple implementation of the Video Poker using JavaScript as a frontend and Google App Engine as a backend.
 This sample describes how to implement server-side backend in Java using Google Cloud Endpoints and JavaScript client library as a client of the Google App Engine Endpoints
 
 [Video Poker Game](https://planar-night-735.appspot.com/)
 
-Screenshots
------------
+## Video Poker Screenshots ##
 
 ![Alt text](/screen1.png?raw=true "Video Poker implementation in Java")
 ![Alt text](/screen2.png?raw=true "Video Poker implementation in Java")
 
-How to use
-----------
+## How to use ##
 
 1. Create your own [Project on Google App Engine](https://console.developers.google.com)
 2. Create client credentials as described in [docs] (https://cloud.google.com/appengine/docs/java/endpoints/consume_js#adding_authentication_support_with_oauth_20) and put them into the sources respectively.
@@ -22,23 +19,19 @@ The hint for seeking required section in the Developers Console
 3. Update `com.arsenyko.endpoint.Constants.WEB_CLIENT_ID` and `var TG_CLIENT_ID` in `main\webapp\app\app.js` to your `CLIENT ID` respectively
 4. Deploy using `mvn appengine:update`. Make sure if you've updated the `application` element in the `src/main/webapp/WEB-INF/appengine-web.xml` respectively.
 
-Troubleshooting
----------------
+## Troubleshooting ##
 
 If you experience troubles connected to deployment, please, get familiar with the concepts provided by [Google App Engine](https://cloud.google.com/appengine/docs/java/)
 
-Video Poker Game on Google App Engine
--------------------------------------
+## Video Poker Game on Google App Engine ##
 
 [Video Poker Game on Google App Engine](https://planar-night-735.appspot.com/). Take attention to the HTTPS proto.
 
-Acknowledgments
-================
+## Acknowledgments ##
 
 Playing Card faces by 
 
-CSS Playing Cards
------------------
+### CSS Playing Cards ###
 
 CSS Playing Cards help you to create simple and semantic playing cards in (X)HTML.
 
@@ -47,8 +40,7 @@ CSS Playing Cards help you to create simple and semantic playing cards in (X)HTM
 * @version  2011-06-14
 * @link     http://selfthinker.github.com/CSS-Playing-Cards/
  
-License
--------
+## License ##
 
 The MIT License (MIT)
 
